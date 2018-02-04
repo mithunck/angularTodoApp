@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" ng-app="todomvc" data-framework="firebase">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Todo App</title>
+  </head>
+  <body>
+   <div class="container" ng-controller="TodoCtrl">
+   <div class="header">
+     <h1> My Todo App</h1>
+   </div>
+
+   <div>
+     <div class="input-group">      
+        <input type="text" class='form-control' placeholder="What needs to be done?" ng-model="newTodo" autofocus/>
+        <span class="input-group-btn"><button class="btn btn-primary" type="button"  ng-click="addTodo()">Add</button> </span>
+     </div>   
+   </div>
+   <div>
+        <ul class="list-group" ng-repeat="todo in todos">
+                <li class="list-group-item">
+                <label>{{todo.title}}</label>
+                <button class="btn btn-outline-warning" type="button" ng-click="removeTodo(todo)">remove</button>
+                </li>
+        </ul>
+   </div>
+   </div>
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="app.js"></script>
+   </body>
+</html>
