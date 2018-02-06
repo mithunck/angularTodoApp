@@ -23,10 +23,10 @@
           <div class="card-header">
             All Todos
           </div>
-          <ul class="list-group list-group-flush" ng-repeat="todo in todos">
+          <ul class="list-group list-group-flush" ng-repeat="todo in todos | orderBy:'-dateTime'">
               <li class="list-group-item">
-                  <label>{{todo.title}}</label>
-                  <button class="btn btn-outline-danger" type="button" ng-click="removeTodo(todo)">remove</button>
+                  <label>{{todo.title}}</label> <button class="btn btn-outline-danger btn-sm float-right" type="button" ng-click="removeTodo(todo)">remove</button>
+                  <br/><span class="badge badge-secondary">{{todo.dateTime}}</span>
               </li>
           </ul>
         </div>
