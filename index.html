@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app="todomvc" data-framework="firebase">
+<html lang="en" ng-app="todomvc">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,33 +9,12 @@
     <title>Todo App</title>
   </head>
   <body>
-   <div class="container" ng-controller="TodoCtrl">
-   <div class="row">
-     <h1 class="header">Todo App</h1>
+   <div class="container">
+   <div ng-view></div>
    </div>
-  <div class="row wrapper">
-     <div class="input-group">      
-        <input type="text" class='form-control' placeholder="What needs to be done?" ng-model="newTodo" autofocus/>
-        <span class="input-group-btn"><button class="btn btn-primary" type="button"  ng-click="addTodo()">Add</button> </span>
-    </div>   
-   <div class="todos">
-      <div class="card">
-          <div class="card-header">
-            All Todos
-          </div>
-          <ul class="list-group list-group-flush" ng-repeat="todo in todos | orderBy:'-dateTime'">
-              <li class="list-group-item">
-                  <label>{{todo.title}}</label> <button class="btn btn-outline-danger btn-sm float-right" type="button" ng-click="removeTodo(todo)">remove</button>
-                  <br/><span class="badge badge-secondary">{{todo.dateTime}}</span>
-              </li>
-          </ul>
-        </div>
-   </div>
-  </div>
-
-  
     <!-- Optional JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
     <script src="app.js"></script>
