@@ -43,7 +43,8 @@ todomvc.run(function($rootScope, $location) {
     $scope.signIn = function() {
       $scope.loginError=null;
       Auth.$signInWithEmailAndPassword($scope.email, $scope.password).then(function(firebaseUser) {
-        $location.path("/account");
+        console.log($scope.email)
+        $location.path("/mytodos");
       }).catch(function(error) {
         console.error("Authentication failed:", error);
         if(error.code=="auth/user-not-found"){
