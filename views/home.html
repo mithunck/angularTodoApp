@@ -1,21 +1,20 @@
 
 <div class="container">
-    <div class="card card-container">
-        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-        <p id="profile-name" class="profile-name-card"></p>
+    <div class="logincard card card-container">
+        <p id="profile-name" class="profile-name-card">TodoApp</p>
         <form class="form-signin">
             <span id="reauth-email" class="reauth-email"></span>
             <input type="email" ng-model='email' id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
             <input type="password"  ng-model='password' id="inputPassword" class="form-control" placeholder="Password" required>
-            <div id="remember" class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
+
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" ng-click="signIn()">Sign in</button>
         </form>
-        <a href="#" class="forgot-password">
+        <p style="color:red">{{loginError}} </p>
+        <p ng-click="resetPassword()" class="forgot-password">
             Forgot the password?
-        </a>
+        </p>
+        <p ng-click="signUp()" class="forgot-password">
+            Register here
+        </p>
     </div>
 </div>

@@ -22,9 +22,9 @@ todomvc.run(function($rootScope, $location) {
       controller: "HomeCtrl",
       templateUrl: "views/home.html"
 
-    }).when("/account", {
-      controller: "AccountCtrl",
-      templateUrl: "views/account.html",
+    }).when("/mytodos", {
+      controller: "todosCtrl",
+      templateUrl: "views/mytodos.html",
       resolve: {
         // controller will not be loaded until $requireSignIn resolves
         "currentAuth": ["Auth", function(Auth) {
@@ -41,16 +41,40 @@ todomvc.run(function($rootScope, $location) {
   todomvc.controller("HomeCtrl", function($scope,$location,Auth) {
 
     $scope.signIn = function() {
+      $scope.loginError=null;
       Auth.$signInWithEmailAndPassword($scope.email, $scope.password).then(function(firebaseUser) {
-        console.log("Signed in as:", firebaseUser.uid);
         $location.path("/account");
       }).catch(function(error) {
         console.error("Authentication failed:", error);
+        if(error.code=="auth/user-not-found"){
+        $scope.loginError="User not found";
+        }
+        else{
+          $scope.loginError="Wrong password";
+        }
       });
     };
+    $scope.signUp= function(){
+      Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
+        .then(function(firebaseUser) {
+          $scope.message = "User created with uid: " + firebaseUser.uid;
+        }).catch(function(error) {
+          $scope.error = error;
+        });
+    };
+
+    $scope.resetPassword = function(){
+      Auth.$sendPasswordResetEmail($scope.email).then(function() {
+        $scope.loginError="Password reset email sent.";
+      }).catch(function(error) {
+        // An error happened.
+      });
+    };
+
+
   });
   
-  todomvc.controller("AccountCtrl", function($scope,$firebaseArray,currentAuth) {
+  todomvc.controller("todosCtrl", function($scope,$firebaseArray,currentAuth) {
     var currentDate= function(){
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
