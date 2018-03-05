@@ -43,7 +43,6 @@ todomvc.run(function($rootScope, $location) {
     $scope.signIn = function() {
       $scope.loginError=null;
       Auth.$signInWithEmailAndPassword($scope.email, $scope.password).then(function(firebaseUser) {
-        console.log($scope.email)
         $location.path("/mytodos");
       }).catch(function(error) {
         console.error("Authentication failed:", error);
@@ -59,6 +58,7 @@ todomvc.run(function($rootScope, $location) {
       Auth.$createUserWithEmailAndPassword($scope.email, $scope.password)
         .then(function(firebaseUser) {
           $scope.message = "User created with uid: " + firebaseUser.uid;
+          $scope.signIn();
         }).catch(function(error) {
           $scope.error = error;
         });
@@ -99,6 +99,7 @@ todomvc.run(function($rootScope, $location) {
        completed:false,
        dateTime:currentDate(),
     });
+    $scope.newTodo="";
     };
     $scope.removeTodo = function(todo){
      $scope.todos.$remove(todo);

@@ -7,14 +7,12 @@
             <input type="email" ng-model='email' id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
             <input type="password"  ng-model='password' id="inputPassword" class="form-control" placeholder="Password" required>
 
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" ng-click="signIn()">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" ng-click="signIn()">Login</button>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" ng-click="signUp()">Register</button>
         </form>
         <p style="color:red">{{loginError}} </p>
         <p ng-click="resetPassword()" class="forgot-password">
             Forgot the password?
-        </p>
-        <p ng-click="signUp()" class="forgot-password">
-            Register here
         </p>
     </div>
 </div>
